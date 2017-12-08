@@ -13,6 +13,6 @@ public class Test
 {
     public Test()
     {
-	System.out.println("Test");
+	System.out.println("Merci Valentin");
     }
 }
