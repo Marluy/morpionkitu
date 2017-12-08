@@ -14,5 +14,6 @@ public class Test
     public Test()
     {
 	System.out.println("Merci Valentin");
+        System.out.println("Mercis Valzadeiten");
     }
 }
