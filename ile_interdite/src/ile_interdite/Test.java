@@ -15,6 +15,5 @@ public class Test
     {
 	System.out.println("Merci Valentin");
         System.out.println("Mercis Valzadeiten");
-        System.out.println("Test depuis le Tosh.");
     }
 }
