@@ -18,12 +18,16 @@ import modele.*;
  */
 public class GameControler implements Observer
 {
-    private Vue vue = new Vue();
-    private Modele modele = new Modele();
+    private Vue vue;
+ //   private Modele modele = new Modele();
+    /* Attributs de partie */
+    private JoueurEffectif joueur1;
+    private JoueurEffectif joueur2;
+    private Grille grille;
     private boolean tourJ1 = true;
-    private int scoreAAtteindre;
+    /*  */
     
-    public GameControler()
+    private GameControler(Vue vue, Joueur joueur1, Joueur joueur2, int largeurGrille, int longueurGrille)
     {
 	
     }
@@ -42,7 +46,7 @@ public class GameControler implements Observer
     */
     private void cocherUneCase(Carreau carreau) // Déclanché lors du click sur un carreau
     {
-        if(getModele().getGrille().getCasesDispo().contains(carreau))
+        if(getGrille().getCasesDispo().contains(carreau))
         {
             carreau.setJoueur(getJoueurActuel());
             getJoueurActuel().addCasesCochees(carreau);
@@ -53,10 +57,10 @@ public class GameControler implements Observer
         }
     }
     
-    private Joueur getJoueurActuel()
+    private JoueurEffectif getJoueurActuel()
     {
-       if(isTourJ1())   return getModele().getJoueur1();
-       else             return getModele().getJoueur2();
+       if(isTourJ1())   return getJoueur1();
+       else             return getJoueur2();
     }
 
     private void joueurSuivant()
@@ -79,20 +83,6 @@ public class GameControler implements Observer
     }
 
     /**
-     * @return the modele
-     */
-    private Modele getModele() {
-        return modele;
-    }
-
-    /**
-     * @param modele the modele to set
-     */
-    private void setModele(Modele modele) {
-        this.modele = modele;
-    }
-
-    /**
      * @return the tourJ1
      */
     private boolean isTourJ1() {
@@ -107,17 +97,51 @@ public class GameControler implements Observer
     }
 
     /**
-     * @return the scoreAAtteindre
+     * @return the grille
      */
-    private int getScoreAAtteindre() {
-        return scoreAAtteindre;
+    private Grille getGrille()
+    {
+	return grille;
     }
 
     /**
-     * @param scoreAAtteindre the scoreAAtteindre to set
+     * @param grille the grille to set
      */
-    private void setScoreAAtteindre(int scoreAAtteindre) {
-        this.scoreAAtteindre = scoreAAtteindre;
+    private void setGrille(Grille grille)
+    {
+	this.grille = grille;
+    }
+
+    /**
+     * @return the joueur1
+     */
+    private JoueurEffectif getJoueur1()
+    {
+	return joueur1;
+    }
+
+    /**
+     * @param joueur1 the joueur1 to set
+     */
+    private void setJoueur1(JoueurEffectif joueur1)
+    {
+	this.joueur1 = joueur1;
+    }
+
+    /**
+     * @return the joueur2
+     */
+    private JoueurEffectif getJoueur2()
+    {
+	return joueur2;
+    }
+
+    /**
+     * @param joueur2 the joueur2 to set
+     */
+    private void setJoueur2(JoueurEffectif joueur2)
+    {
+	this.joueur2 = joueur2;
     }
 
 }
