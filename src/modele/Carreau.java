@@ -11,7 +11,7 @@ package modele;
  */
 class Carreau
 {
-    private final Coordonnee coordonnee;
+    private Coordonnee coordonnee;
     private Joueur joueur;
     
     Carreau(Coordonnee coordonnee)
@@ -26,4 +26,26 @@ class Carreau
     {
 	this.joueur = joueur;
     }
+
+    /**
+     * @return the coordonnee
+     */
+    public Coordonnee getCoordonnee() {
+        return coordonnee;
+    }
+
+    /**
+     * @return the joueur
+     */
+    public Joueur getJoueur() {
+        return joueur;
+    }
+
+    /**
+     * @param coordonnee the coordonnee to set
+     */
+    public void setCoordonnee(Coordonnee coordonnee) {
+        this.coordonnee = coordonnee;
+    }
+    
 }
