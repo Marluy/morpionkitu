@@ -50,7 +50,7 @@ public class Controler implements Observer
 
     private void joueurSuivant()
     {
-        
+        setTourJ1(!isTourJ1());
     }
 
     /**
