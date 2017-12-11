@@ -5,6 +5,8 @@
  */
 package morpion;
 
+import morpion.controler.Controler;
+
 /**
  *
  * @author tosiv
@@ -14,8 +16,9 @@ public class Morpion {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        // TODO code application logic here
+    public static void main(String[] args)
+    {
+        Controler controler = new Controler();
     }
     
 }
