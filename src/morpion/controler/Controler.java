@@ -5,8 +5,10 @@
  */
 package morpion.controler;
 
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.Scanner;
 import morpion.Vue.Vue;
 import modele.*;
 
@@ -32,14 +34,23 @@ public class Controler implements Observer
 	throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
+    /* OSEF
     private void listerCasesCochees(Joueur joueur)
     {
         
     }
-    
-    private void cocherUneCase()
+    */
+    private void cocherUneCase(Carreau carreau) // Déclanché lors du click sur un carreau
     {
-        
+        if(getModele().getGrille().getCasesDispo().contains(carreau))
+        {
+            carreau.setJoueur(getJoueurActuel());
+            getJoueurActuel().addCasesCochees(carreau);
+        }
+        else
+        {
+            /* Message IHM */
+        }
     }
     
     private Joueur getJoueurActuel()

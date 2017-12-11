@@ -9,7 +9,7 @@ package modele;
  *
  * @author tosiv
  */
-class Carreau
+public class Carreau
 {
     private Coordonnee coordonnee;
     private Joueur joueur;

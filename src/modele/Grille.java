@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author tosiv
  */
-class Grille
+public class Grille
 {
     private final ArrayList<Carreau> carreaux = new ArrayList<>();
     
@@ -27,11 +27,12 @@ class Grille
     /**
      * @return the carreaux
      */
-    public ArrayList<Carreau> getCarreaux() {
+    public ArrayList<Carreau> getCarreaux()
+    {
         return carreaux;
     }
     
-    public ArrayList<Carreau> listerCasesDispo()
+    public ArrayList<Carreau> getCasesDispo()
     {
         ArrayList<Carreau> casesDispo = new ArrayList<>();
         

@@ -72,4 +72,9 @@ public class Joueur
     public ArrayList<Carreau> getCasesCochees() {
         return casesCochees;
     }
+    
+    public void addCasesCochees(Carreau carreau)
+    {
+        getCasesCochees().add(carreau);
+    }
 }
