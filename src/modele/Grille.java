@@ -30,5 +30,19 @@ class Grille
     public ArrayList<Carreau> getCarreaux() {
         return carreaux;
     }
-
+    
+    public ArrayList<Carreau> listerCasesDispo()
+    {
+        ArrayList<Carreau> casesDispo = new ArrayList<>();
+        
+        for(Carreau c : getCarreaux())
+        {
+            if(c.getJoueur() != null)
+            {
+                casesDispo.add(c);
+            }
+        }
+        
+        return casesDispo;
+    }
 }
