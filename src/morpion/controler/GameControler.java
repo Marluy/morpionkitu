@@ -16,14 +16,14 @@ import modele.*;
  *
  * @author tosiv
  */
-public class Controler implements Observer
+public class GameControler implements Observer
 {
     private Vue vue = new Vue();
     private Modele modele = new Modele();
-    private boolean tourJ1;
+    private boolean tourJ1 = true;
     private int scoreAAtteindre;
     
-    public Controler()
+    public GameControler()
     {
 	
     }
@@ -67,56 +67,56 @@ public class Controler implements Observer
     /**
      * @return the vue
      */
-    public Vue getVue() {
+    private Vue getVue() {
         return vue;
     }
 
     /**
      * @param vue the vue to set
      */
-    public void setVue(Vue vue) {
+    private void setVue(Vue vue) {
         this.vue = vue;
     }
 
     /**
      * @return the modele
      */
-    public Modele getModele() {
+    private Modele getModele() {
         return modele;
     }
 
     /**
      * @param modele the modele to set
      */
-    public void setModele(Modele modele) {
+    private void setModele(Modele modele) {
         this.modele = modele;
     }
 
     /**
      * @return the tourJ1
      */
-    public boolean isTourJ1() {
+    private boolean isTourJ1() {
         return tourJ1;
     }
 
     /**
      * @param tourJ1 the tourJ1 to set
      */
-    public void setTourJ1(boolean tourJ1) {
+    private void setTourJ1(boolean tourJ1) {
         this.tourJ1 = tourJ1;
     }
 
     /**
      * @return the scoreAAtteindre
      */
-    public int getScoreAAtteindre() {
+    private int getScoreAAtteindre() {
         return scoreAAtteindre;
     }
 
     /**
      * @param scoreAAtteindre the scoreAAtteindre to set
      */
-    public void setScoreAAtteindre(int scoreAAtteindre) {
+    private void setScoreAAtteindre(int scoreAAtteindre) {
         this.scoreAAtteindre = scoreAAtteindre;
     }
 

@@ -5,7 +5,7 @@
  */
 package morpion;
 
-import morpion.controler.Controler;
+import morpion.controler.GameControler;
 
 /**
  *
@@ -18,7 +18,7 @@ public class Morpion {
      */
     public static void main(String[] args)
     {
-        Controler controler = new Controler();
+        GameControler controler = new GameControler();
     }
     
 }
