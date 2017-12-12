@@ -1,5 +1,9 @@
 package ile_interdite.Aventurier;
 
+import ile_interdite.Plateau.Grille;
+import ile_interdite.Plateau.Tuile;
+import java.util.HashSet;
+
 public class Pilote extends Aventurier {
 
 	private boolean deplacementSpecialEffectue;
@@ -21,5 +25,13 @@ public class Pilote extends Aventurier {
 	public void setDeplacementSpecialEffectue(boolean logique) {
 		this.deplacementSpecialEffectue = logique;
 	}
+        
+        public HashSet<Tuile> getDeplacementsPossibles(Grille g){
+            HashSet<Tuile> tuilesPossibles = new HashSet<>();
+            if (deplacementSpecialEffectue == false){
+                g.getTuilesAccessibles()
+                
+            }
+        }
 
 }

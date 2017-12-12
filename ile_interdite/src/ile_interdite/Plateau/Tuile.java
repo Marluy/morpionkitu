@@ -3,6 +3,7 @@ package ile_interdite.Plateau;
 import ile_interdite.Aventurier.Aventurier;
 import java.util.*;
 import java.util.stream.Stream;
+import ile_interdite.util.*;
 
 public class Tuile {
 
@@ -34,6 +35,10 @@ public class Tuile {
 		return this.nom;
 	}
 
+        public EtatTuile getEtat(){
+            return this.etat;
+        }
+        
 	public void updateState() {
 		// TODO - implement Tuile.updateState
 		throw new UnsupportedOperationException();

@@ -1,9 +1,10 @@
 package ile_interdite.Plateau;
 
-import java.util.ArrayList;
+import static ile_interdite.Plateau.EtatTuile.ASSECHEE;
+import static ile_interdite.Plateau.EtatTuile.INONDEE;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.LinkedHashSet;
+import ile_interdite.util.*;
 
 public class Grille {
         private HashSet<Tuile> listeTuiles;
@@ -69,8 +70,13 @@ public class Grille {
 	}
 
 	public HashSet<Tuile> getTuilesAccessibles() {
-		// TODO - implement Grille.getTuilesAccessibles
-		throw new UnsupportedOperationException();
+		HashSet<Tuile> tuilesAccessibles = new HashSet<>();
+                for (Tuile tui : listeTuiles){
+                    if (tui.getEtat()== ASSECHEE || tui.getEtat()== INONDEE ){
+                        tuilesAccessibles.add(tui);
+                    }
+                }
+                return tuilesAccessibles;
 	}
 
 	/**
