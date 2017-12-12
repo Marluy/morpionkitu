@@ -29,9 +29,10 @@ public class Pilote extends Aventurier {
         public HashSet<Tuile> getDeplacementsPossibles(Grille g){
             HashSet<Tuile> tuilesPossibles = new HashSet<>();
             if (deplacementSpecialEffectue == false){
-                g.getTuilesAccessibles()
+                g.getTuilesAccessibles();
                 
             }
+            return tuilesPossibles;
         }
 
 }
