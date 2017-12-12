@@ -2,6 +2,7 @@ package ile_interdite.Plateau;
 
 import ile_interdite.Aventurier.Aventurier;
 import java.util.*;
+import java.util.stream.Stream;
 
 public class Tuile {
 
@@ -37,5 +38,9 @@ public class Tuile {
 		// TODO - implement Tuile.updateState
 		throw new UnsupportedOperationException();
 	}
+
+        int getCoordonnee() {
+        return this.coordonnee;
+    }
 
 }
