@@ -2,17 +2,35 @@ package ile_interdite.Plateau;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedHashSet;
 
 public class Grille {
-
+        private HashSet<Tuile> listeTuiles;
 	/**
 	 * 
 	 * @param t
 	 */
 	public HashSet<Tuile> getOrt(Tuile t) {
-		// TODO - implement Grille.getOrt
-		throw new UnsupportedOperationException();
+            HashSet<Tuile> tuilesOrthogonales = new HashSet<>();
+            
+                
+            for (Tuile tui : listeTuiles) {
+                if (tui.getCoordonnee() == t.getCoordonnee()-1){
+                    tuilesOrthogonales.add(tui);
+                }
+                if(tui.getCoordonnee() == t.getCoordonnee()+1){
+                     tuilesOrthogonales.add(tui);
+                }
+                if(tui.getCoordonnee() == t.getCoordonnee()+10){
+                     tuilesOrthogonales.add(tui);
+                }
+                if(tui.getCoordonnee() == t.getCoordonnee()-10){
+                     tuilesOrthogonales.add(tui);
+                }    
+            }
+                
+                return tuilesOrthogonales;
 	}
 
 	/**
@@ -20,8 +38,25 @@ public class Grille {
 	 * @param t
 	 */
 	public HashSet<Tuile> getDiag(Tuile t) {
-		// TODO - implement Grille.getDiag
-		throw new UnsupportedOperationException();
+		 HashSet<Tuile> tuilesDiagonales = new HashSet<>();
+            
+                
+            for (Tuile tui : listeTuiles) {
+                if (tui.getCoordonnee() == t.getCoordonnee()+11){
+                    tuilesDiagonales.add(tui);
+                }
+                if(tui.getCoordonnee() == t.getCoordonnee()+9){
+                     tuilesDiagonales.add(tui);
+                }
+                if(tui.getCoordonnee() == t.getCoordonnee()-11){
+                     tuilesDiagonales.add(tui);
+                }
+                if(tui.getCoordonnee() == t.getCoordonnee()-9){
+                     tuilesDiagonales.add(tui);
+                }    
+            }
+                
+                return tuilesDiagonales;
 	}
 
 	/**
