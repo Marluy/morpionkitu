@@ -3,18 +3,19 @@ package ile_interdite.Aventurier;
 import ile_interdite.Plateau.Tuile;
 import ile_interdite.Plateau.Grille;
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public abstract class Aventurier {
 
 	private String nomJoueur;
+        private Tuile position;
 
 	public abstract String getNomRole();
 
 	public abstract Pion getPion();
 
-	public void getPosition() {
-		// TODO - implement Aventurier.getPosition
-		throw new UnsupportedOperationException();
+	public Tuile getPosition() {
+		return this.position;
 	}
 
 	/**
@@ -29,10 +30,11 @@ public abstract class Aventurier {
 	/**
 	 * 
 	 * @param g
+     * @return 
 	 */
-	public ArrayList<Tuile> getDeplacementsPossibles(Grille g) {
-		// TODO - implement Aventurier.getDeplacementsPossibles
-		throw new UnsupportedOperationException();
+	public HashSet<Tuile> getDeplacementsPossibles(Grille g) {
+		return g.getOrt(this.getPosition());
+                
 	}
 
 	/**
@@ -40,8 +42,7 @@ public abstract class Aventurier {
 	 * @param t
 	 */
 	public void setPosition(Tuile t) {
-		// TODO - implement Aventurier.setPosition
-		throw new UnsupportedOperationException();
+		this.position=t;
 	}
 
 	public void initialiserAventurier() {
