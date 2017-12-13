@@ -6,6 +6,8 @@
 package modele;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
@@ -13,28 +15,72 @@ import java.util.ArrayList;
  */
 public class Grille
 {
-    private final ArrayList<Carreau> carreaux = new ArrayList<>();
+    private final HashMap<Coordonnee, Carreau> carreaux = new HashMap<>();
     
     public Grille(int longeur, int largeur)
     {
 	for(int y = 0 ; y < largeur ; y++)
         for(int x = 0 ; x < longeur ; x++)
         {
-            getCarreaux().add(new Carreau(new Coordonnee(x, y)));
+	    Coordonnee coord = new Coordonnee(x, y);
+            this.getCarreaux().put(coord, new Carreau(coord));
         }
     }
     
-    public boolean isFinMatch()
+    public int maxAligne(Carreau c)
     {
+	int max = 0;
 	
 	
-	return false;
+	
+	
+	
+	return 0;
     }
+    
+    public Carreau getCarreauGauche(Carreau c)	// retourne 'null' si hors de la grille
+    {
+	int x = c.getCoordonnee().getPosX()-1;
+	int y = c.getCoordonnee().getPosY();
+	
+	if(x < 0)   return null;
+	else	    return carreaux.get(new Coordonnee(x-1, y));
+    }
+    
+    public Carreau getCarreauDroit(Carreau c)	// retourne 'null' si hors de la grille
+    {
+	int x = c.getCoordonnee().getPosX()-1;
+	int y = c.getCoordonnee().getPosY();
+	
+	if(x < 0)   return null;
+	else	    return carreaux.get(new Coordonnee(x-1, y));
+    }
+	
+    public Carreau getCarreauHaut(Carreau c)	// retourne 'null' si hors de la grille
+    {
+	int x = c.getCoordonnee().getPosX()-1;
+	int y = c.getCoordonnee().getPosY();
+	
+	if(x < 0)   return null;
+	else	    return carreaux.get(new Coordonnee(x-1, y));
+    }
+	    
+    public Carreau getCarreauBas(Carreau c)	// retourne 'null' si hors de la grille
+    {
+	int x = c.getCoordonnee().getPosX()-1;
+	int y = c.getCoordonnee().getPosY();
+	
+	if(x < 0)   return null;
+	else	    return carreaux.get(new Coordonnee(x-1, y));
+    }
+    
+    
+    
 
     /**
      * @return the carreaux
      */
-    public ArrayList<Carreau> getCarreaux()
+    public HashMap<Coordonnee, Carreau> getCarreaux()
     {
         return carreaux;
     }
@@ -43,11 +89,12 @@ public class Grille
     {
         ArrayList<Carreau> casesDispo = new ArrayList<>();
         
-        for(Carreau c : getCarreaux())
+	
+        for(Map.Entry<Coordonnee, Carreau> entry : getCarreaux().entrySet())	// Parcour de la HashMap
         {
-            if(c.getJoueur() != null)
+            if(entry.getValue().getJoueur() != null)				// Si il elle n'est pas cochée, on l'ajoute
             {
-                casesDispo.add(c);
+                casesDispo.add(entry.getValue());
             }
         }
         

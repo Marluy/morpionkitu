@@ -11,8 +11,8 @@ package modele;
  */
 public class Coordonnee
 {
-    private int posX;
-    private int posY;
+    private final int posX;
+    private final int posY;
     
     public Coordonnee(int x, int y)
     {
@@ -28,23 +28,25 @@ public class Coordonnee
     }
 
     /**
-     * @param posX the posX to set
-     */
-    public void setPosX(int posX) {
-        this.posX = posX;
-    }
-
-    /**
      * @return the posY
      */
     public int getPosY() {
         return posY;
     }
 
-    /**
-     * @param posY the posY to set
-     */
-    public void setPosY(int posY) {
-        this.posY = posY;
+    /* Depuis stackoverflow.com; permet d'utiliser un clef à 2D */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Coordonnee)) return false;
+        Coordonnee key = (Coordonnee) o;
+        return posX == key.posX && posY == key.posY;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = posX;
+        result = 31 * result + posY;
+        return result;
     }
 }
