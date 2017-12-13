@@ -20,36 +20,65 @@ public class GameControler implements Observer
 {
     private Vue vue;
  //   private Modele modele = new Modele();
+    /* Parametres de partie */
+    private int scoreAAtteindre;
+    private int largeurGrille;
+    private int longueurGrille;
+    private int nbrSymboleAAlligner;
+    
     /* Attributs de partie */
     private JoueurEffectif joueur1;
     private JoueurEffectif joueur2;
     private Grille grille;
-    private boolean tourJ1 = true;
+    private boolean tourJ1;
+    private boolean finMatch;
+
     /*  */
     
-    private GameControler(Vue vue, Joueur joueur1, Joueur joueur2, int largeurGrille, int longueurGrille)
+    public GameControler(Vue vue)
     {
+	this.vue = vue;
+	this.scoreAAtteindre = 3;
+	this.nbrSymboleAAlligner = 5;
+	this.largeurGrille = 10;
+	this.longueurGrille = 10;
 	
-    }
-
-    @Override
-    public void update(Observable o, Object arg)
-    {
-	throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	this.joueur1 = null;
+	this.joueur2 = null;
+	this.grille = null;
+	this.tourJ1 = true;
+	this.finMatch = false;
     }
     
-    /* OSEF
-    private void listerCasesCochees(Joueur joueur)
+    /**
+     *
+     * @param joueur1
+     * @param joueur2
+     */
+    public void InitialiserMatch(Joueur joueur1, Joueur joueur2)
     {
-        
+	this.joueur1 = new JoueurEffectif(joueur1, Symbole.CROIX);
+	this.joueur2 = new JoueurEffectif(joueur2, Symbole.ROND);
+	this.grille = new Grille(longueurGrille, largeurGrille);
+	this.tourJ1 = true;
+	this.finMatch = false;
+	
     }
-    */
+    
+    void JouerMatch()
+    {
+	// affichage IHM jeu
+	while(!finMatch);
+    }
+    
     private void cocherUneCase(Carreau carreau) // Déclanché lors du click sur un carreau
     {
         if(getGrille().getCasesDispo().contains(carreau))
         {
             carreau.setJoueur(getJoueurActuel());
             getJoueurActuel().addCasesCochees(carreau);
+	    
+	    joueurSuivant();
         }
         else
         {
@@ -66,6 +95,12 @@ public class GameControler implements Observer
     private void joueurSuivant()
     {
         setTourJ1(!isTourJ1());
+    }
+    
+    @Override
+    public void update(Observable o, Object arg)
+    {
+	throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -143,5 +178,4 @@ public class GameControler implements Observer
     {
 	this.joueur2 = joueur2;
     }
-
 }

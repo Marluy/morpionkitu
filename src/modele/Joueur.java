@@ -14,6 +14,7 @@ import java.util.ArrayList;
 public class Joueur
 {
     private String nom;
+    private int nbrMatchGagne = 0;
     
     public Joueur(String nom)
     {

@@ -15,13 +15,20 @@ public class Grille
 {
     private final ArrayList<Carreau> carreaux = new ArrayList<>();
     
-    Grille(int longeur, int largeur)
+    public Grille(int longeur, int largeur)
     {
 	for(int y = 0 ; y < largeur ; y++)
         for(int x = 0 ; x < longeur ; x++)
         {
             getCarreaux().add(new Carreau(new Coordonnee(x, y)));
         }
+    }
+    
+    public boolean isFinMatch()
+    {
+	
+	
+	return false;
     }
 
     /**

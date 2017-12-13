@@ -18,6 +18,13 @@ public class JoueurEffectif
     private Joueur joueur;
     private ArrayList<Carreau> casesCochees = new ArrayList<>();
 
+    public JoueurEffectif(Joueur joueur, Symbole symbole)
+    {
+	this.symbole = symbole;
+	this.joueur = joueur;
+	this.nbrSucces = 0;
+    }
+    
     /**
      * @return the symbole
      */
