@@ -8,7 +8,7 @@ package morpion.controler;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
-import modele.Joueur;
+import morpion.modele.Joueur;
 import morpion.Vue.Vue;
 
 /**
@@ -24,8 +24,9 @@ public class MainControler implements Observer
     
     public MainControler()
     {
-	this.vue = new Vue();
-	this.gameControler = new GameControler(vue);
+	listeJoueurs.add(new Joueur("Titi"));
+	listeJoueurs.add(new Joueur("Toto"));
+	debuterTournois();
     }
 
     @Override
@@ -40,8 +41,10 @@ public class MainControler implements Observer
 	{
 	    for(int j = i+1 ; j < listeJoueurs.size() ; i++)	    // Le joueur n à déjà joué les match avec les joueurs n-m {0 < m < n} & ne joue pas contre lui même
 	    {
-		    gameControler.InitialiserMatch(listeJoueurs.get(i), listeJoueurs.get(j));
-		    gameControler.JouerMatch();
+		    vue = new Vue(5, 5);
+		    gameControler = new GameControler(vue, listeJoueurs.get(i), listeJoueurs.get(j));
+		    while(!gameControler.isFinMatch()) System.out.println("fesses");
+		    
 	    }
 		
 	}

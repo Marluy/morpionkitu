@@ -5,12 +5,16 @@
  */
 package morpion.controler;
 
-import java.util.ArrayList;
+import morpion.modele.Carreau;
+import morpion.modele.Symbole;
+import morpion.modele.Joueur;
+import morpion.modele.Grille;
+import morpion.modele.JoueurEffectif;
 import java.util.Observable;
 import java.util.Observer;
-import java.util.Scanner;
+import morpion.Vue.Message_ClicCarreau;
 import morpion.Vue.Vue;
-import modele.*;
+import morpion.modele.Coordonnee;
 
 /**
  *
@@ -35,55 +39,26 @@ public class GameControler implements Observer
 
     /*  */
     
-    public GameControler(Vue vue)
+    public GameControler(Vue vue, Joueur joueur1, Joueur joueur2)
     {
 	this.vue = vue;
+	vue.addObserver(this);
 	this.scoreAAtteindre = 3;
 	this.nbrSymboleAAlligner = 5;
 	this.largeurGrille = 10;
 	this.longueurGrille = 10;
 	
-	this.joueur1 = null;
-	this.joueur2 = null;
-	this.grille = null;
-	this.tourJ1 = true;
-	this.finMatch = false;
-    }
-    
-    /**
-     *
-     * @param joueur1
-     * @param joueur2
-     */
-    public void InitialiserMatch(Joueur joueur1, Joueur joueur2)
-    {
 	this.joueur1 = new JoueurEffectif(joueur1, Symbole.CROIX);
 	this.joueur2 = new JoueurEffectif(joueur2, Symbole.ROND);
 	this.grille = new Grille(longueurGrille, largeurGrille);
 	this.tourJ1 = true;
 	this.finMatch = false;
-	
-    }
-    
-    void JouerMatch()
-    {
-	// affichage IHM jeu
-	while(!finMatch);
     }
     
     private void cocherUneCase(Carreau carreau) // Déclanché lors du click sur un carreau
     {
-        if(getGrille().getCasesDispo().contains(carreau))
-        {
-            carreau.setJoueur(getJoueurActuel());
-            getJoueurActuel().addCasesCochees(carreau);
-	    
-	    joueurSuivant();
-        }
-        else
-        {
-            /* Message IHM */
-        }
+        carreau.setJoueur(getJoueurActuel());
+        getJoueurActuel().addCasesCochees(carreau);
     }
     
     private JoueurEffectif getJoueurActuel()
@@ -97,10 +72,38 @@ public class GameControler implements Observer
         setTourJ1(!isTourJ1());
     }
     
-    @Override
-    public void update(Observable o, Object arg)
+    /**
+	Détermine si la partie est terminée d'apres le dernier coup joué 
+    */
+    private boolean isFinMatch(Carreau c)
     {
-	throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	return	grille.maxAligneHorizontal(c, getJoueurActuel())>= nbrSymboleAAlligner ||
+		grille.maxAligneVertical(c, getJoueurActuel())  >= nbrSymboleAAlligner ||
+		grille.maxAligneDiagHgBd(c, getJoueurActuel())  >= nbrSymboleAAlligner ||
+		grille.maxAligneDiagHdBg(c, getJoueurActuel())  >= nbrSymboleAAlligner;
+    }
+    
+    public boolean isFinMatch()
+    {
+	return finMatch;
+    }
+    
+    @Override
+    public void update(Observable o, Object message)
+    {
+	if(message.getClass() == Message_ClicCarreau.class)
+	{
+	    Message_ClicCarreau msg_cc = (Message_ClicCarreau)message;
+	    Carreau c = grille.getCarreaux().get(msg_cc.getCoordonnee());
+	    
+	    if(c.getJoueur() == null)
+	    {
+		cocherUneCase(c);
+		msg_cc.getJlabel().setText(getJoueurActuel().getSymbole().toString());
+		if(isFinMatch(c)) finMatch = true;
+		else joueurSuivant();
+	    }
+	}
     }
 
     /**

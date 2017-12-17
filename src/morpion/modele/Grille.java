@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package modele;
+package morpion.modele;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,15 +27,106 @@ public class Grille
         }
     }
     
-    public int maxAligne(Carreau c)
+    public int maxAligneHorizontal(Carreau c, JoueurEffectif joueur)
     {
-	int max = 0;
+	int i = 0, count, x = c.getCoordonnee().getPosX(), y = c.getCoordonnee().getPosY();
+	Coordonnee coordTmp;
+
+	// Gauche
+	do
+	{
+	    i++;
+	    coordTmp = new Coordonnee(x + i, y);
+	}
+	while(carreaux.get(coordTmp) != null && carreaux.get(coordTmp).getJoueur() == joueur);
+	count = i-1;
+	 // Droite
+	i = 0;
+	do
+	{
+	    i++;
+	    coordTmp = new Coordonnee(x - i, y);
+	}
+	while(carreaux.get(coordTmp) != null && carreaux.get(coordTmp).getJoueur() == joueur);
+	return count + i;
+    }
+
+    
+    public int maxAligneVertical(Carreau c, JoueurEffectif joueur)
+    {
+	int i = 0, count, x = c.getCoordonnee().getPosX(), y = c.getCoordonnee().getPosY();
+	Coordonnee coordTmp;
 	
+	// Haut
+	i = 0;
+	do
+	{
+	    i++;
+	    coordTmp = new Coordonnee(x, y + i);
+	}
+	while(carreaux.get(coordTmp) != null && carreaux.get(coordTmp).getJoueur() == joueur);
+	count = i-1;
+	// Bas
+	i = 0;
+	do
+	{
+	    i++;
+	    coordTmp = new Coordonnee(x, y - i);
+	}
+	while(carreaux.get(coordTmp) != null && carreaux.get(coordTmp).getJoueur() == joueur);
+	return count + i;
+    }
+    
+    public int maxAligneDiagHgBd(Carreau c, JoueurEffectif joueur)
+    {
+	int i = 0, count, x = c.getCoordonnee().getPosX(), y = c.getCoordonnee().getPosY();
+	Coordonnee coordTmp;
 	
+	// Haut
+	i = 0;
+	do
+	{
+	    i++;
+	    coordTmp = new Coordonnee(x - i, y + i);
+	}
+	while(carreaux.get(coordTmp) != null && carreaux.get(coordTmp).getJoueur() == joueur);
+	count = i-1;
+	// Bas
+	i = 0;
+	do
+	{
+	    i++;
+	    coordTmp = new Coordonnee(x + i, y - i);
+	}
+	while(carreaux.get(coordTmp) != null && carreaux.get(coordTmp).getJoueur() == joueur);
 	
+	return count + i;
+    }
+    
+    public int maxAligneDiagHdBg(Carreau c, JoueurEffectif joueur)
+    {
+	int i = 0, count, x = c.getCoordonnee().getPosX(), y = c.getCoordonnee().getPosY();
+	Coordonnee coordTmp;
 	
+	// Haut
+	i = 0;
+	do
+	{
+	    i++;
+	    coordTmp = new Coordonnee(x + i, y + i);
+	}
+	while(carreaux.get(coordTmp) != null && carreaux.get(coordTmp).getJoueur() == joueur);
+	count = i-1;
+	// Bas
+	i = 0;
+	do
+	{
+	    i++;
+	    coordTmp = new Coordonnee(x - i, y - i);
+	}
+	while(carreaux.get(coordTmp) != null && carreaux.get(coordTmp).getJoueur() == joueur);
 	
-	return 0;
+	return count + i;
     }
     
     public Carreau getCarreauGauche(Carreau c)	// retourne 'null' si hors de la grille
