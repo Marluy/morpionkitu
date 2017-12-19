@@ -5,12 +5,17 @@
  */
 package morpion.Vue;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.TextArea;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.HashMap;
 import java.util.Observable;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -28,16 +33,57 @@ public class Vue extends Observable
     {
 	JFrame window = new JFrame();
 	window.setTitle("Match");
-	window.setSize(400, 400);
+	window.setSize(1200, 800);
 	window.setLocationRelativeTo(null);
 	window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       
-	JPanel panel = new JPanel();
-	window.setContentPane(panel);
-	
-	GridLayout gridLayout = new GridLayout(largeur, longueur);
-	panel.setLayout(gridLayout);
-	
+	JPanel panelPrincipal = new JPanel();
+        panelPrincipal.setLayout(new BorderLayout());
+	window.setContentPane(panelPrincipal);
+        
+        Dimension sizeWin = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+        
+        //Panneau du haut
+        JPanel panelInfoRencontre = new JPanel();
+        panelInfoRencontre.setLayout(new BorderLayout());
+        JPanel panelRencontre = new JPanel();
+        JPanel panelScore = new JPanel();	
+        panelRencontre.add(new TextArea("test"));
+        
+       
+        panelScore.add(new TextArea("test"));
+        
+        panelPrincipal.add(panelInfoRencontre,BorderLayout.NORTH);
+        
+        panelInfoRencontre.add(panelRencontre,BorderLayout.NORTH);
+        panelInfoRencontre.add(panelScore,BorderLayout.SOUTH);
+        
+        //Panneau de gauche
+        JPanel panelBouttonInfo = new JPanel();
+        panelPrincipal.add(panelBouttonInfo,BorderLayout.WEST);  
+        JPanel panelJoueur = new JPanel();
+        JPanel panelSymbole = new JPanel();
+        JPanel panelboutton = new JPanel();
+        panelBouttonInfo.add(panelJoueur,BorderLayout.NORTH);        
+        panelBouttonInfo.add(panelSymbole,BorderLayout.CENTER);
+        panelBouttonInfo.add(panelboutton,BorderLayout.SOUTH);
+        
+        JButton regle = new JButton("Règle");
+        JButton score = new JButton("Score");
+         int height = (int) sizeWin.getHeight() - 25;
+        int width = (int) sizeWin.getWidth();
+        panelSymbole.setSize(width, height);
+        JButton abandon = new JButton("Abandonner");
+        panelboutton.add(regle,BorderLayout.WEST);
+        panelboutton.add(score,BorderLayout.EAST);
+        panelboutton.add(abandon,BorderLayout.SOUTH);
+        
+        //Panneau du centre
+	GridLayout grilleMorpion = new GridLayout(largeur, longueur);
+        JPanel panelGrille = new JPanel();
+   
+	panelGrille.setLayout(grilleMorpion);
+	panelPrincipal.add(panelGrille,BorderLayout.CENTER);
 	HashMap<JLabel, Coordonnee> grille = new HashMap<>();
 	
 	System.out.println(largeur);
@@ -48,6 +94,7 @@ public class Vue extends Observable
 	for(int x = 0 ; x < longueur ; x++)
 	{
 	    JLabel label = new JLabel("(" + x + ";" + y + ")");
+            label.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 	    grille.put(label, new Coordonnee(x, y));
 	    label.addMouseListener(new MouseListener()
 	    {
@@ -68,7 +115,7 @@ public class Vue extends Observable
 		@Override
 		public void mouseExited(MouseEvent me) {}
 	    });
-	    panel.add(label);
+	    panelGrille.add(label);
 	}
 	}
 	

@@ -43,7 +43,7 @@ public class MainControler implements Observer
 	    {
 		    vue = new Vue(5, 5);
 		    gameControler = new GameControler(vue, listeJoueurs.get(i), listeJoueurs.get(j));
-		    while(!gameControler.isFinMatch()) System.out.println("fesses");
+		    while(!gameControler.isFinMatch());
 		    
 	    }
 		
